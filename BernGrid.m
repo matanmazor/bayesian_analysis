@@ -48,6 +48,9 @@ HDIinfo = HDIofGrid( pTheta, credMass)
 HDI = [Theta(HDIinfo.indices(1)) Theta(HDIinfo.indices(end))];
 line(HDI,[0,0],'Color','k','LineWidth',5); hold on;
 text(mean(HDI),HDIinfo.height, sprintf('%d%% HDI',credMass*100),'HorizontalAlignment','center');
+text(HDI(1),pTheta(HDIinfo.indices(1)), num2str(HDI(1)),'HorizontalAlignment','center');
+text(HDI(2),pTheta(HDIinfo.indices(end)), num2str(HDI(2)),'HorizontalAlignment','center');
+
 hold off;
 
 %% Plot the likelihood: p(Data|Theta)
@@ -82,5 +85,7 @@ HDIinfo = HDIofGrid( pThetaGivenData, credMass)
 HDI = [Theta(HDIinfo.indices(1)) Theta(HDIinfo.indices(end))];
 line(HDI,[0,0],'Color','k','LineWidth',5); hold on;
 text(mean(HDI),HDIinfo.height, sprintf('%d%% HDI',credMass*100),'HorizontalAlignment','center');
+text(HDI(1),pThetaGivenData(HDIinfo.indices(1)), num2str(HDI(1)),'HorizontalAlignment','center');
+text(HDI(2),pThetaGivenData(HDIinfo.indices(end)), num2str(HDI(2)),'HorizontalAlignment','center');
 posterior = pThetaGivenData;
 hold off;
