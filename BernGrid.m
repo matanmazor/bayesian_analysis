@@ -72,7 +72,7 @@ subplot(3,1,3)
 yLim = [0,1.1*max(pThetaGivenData)];
 bar( Theta, pThetaGivenData, 'EdgeColor','None','FaceColor',[0.4 0.7 1])
 xlim([0,1]); ylim(yLim);
-xlabel('\theta'); ylabel('p(\theta|Data)'); title('prior');
+xlabel('\theta'); ylabel('p(\theta|Data)'); title('posterior');
 meanTheta = sum( Theta .* pThetaGivenData ); hold on;
 text(0.1, yLim(2)*0.8,['mean=',num2str(meanTheta)]);
 modeTheta = Theta(find(pThetaGivenData== max( pThetaGivenData )));
