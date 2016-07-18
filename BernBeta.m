@@ -92,7 +92,7 @@ plot([HDI(2),HDI(2)],[0,HDI_height],':','Color','k'); hold on;
 text(mean(HDI),HDI_height*1.7, sprintf('%d%% HDI',credMass*100),'HorizontalAlignment','center');
 text(HDI(1),HDI_height*1.5, num2str(HDI(1),2),'HorizontalAlignment','center');
 text(HDI(2),HDI_height*1.5, num2str(HDI(2),2),'HorizontalAlignment','center');
-posterior = pThetaGivenData;
+posterior = [a+z, b+N-z];
 hold off;
 
 end
