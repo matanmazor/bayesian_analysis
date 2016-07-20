@@ -14,7 +14,7 @@ targetRelProb = @( theta , data ) (computeLikelihood( theta , data )...
     .* computePrior( theta ));
 
 %Specify the length of the trajectory, i.e., the number of jumps to try:
-trajLength = 50000; % arbitrary large number
+trajLength = 5000; % arbitrary large number
 %Initialize the vector that will store the results:
 trajectory = nan(1 , trajLength);
 %Specify where to start the trajectory:
@@ -92,4 +92,5 @@ plot( trajectory(idxToPlot) , idxToPlot, '-o', ...
 title('Beginning of Chain');
 xlabel('\theta'); xlim([0,1]); ylabel('Step in Chain');
 
-saveas(gcf,'BernMetrop0.png');
+img = getframe(gcf);
+imwrite(img.cdata,fullfile('figures','BernMetrop0.png'));

@@ -11,6 +11,6 @@ N = 330;                         % The total number of flips.
 z = 130;                         % The number of heads.
 % Convert N and z into vector of 0's and 1's.
 Data = [repelem(0,N-z),repelem(1,z)];
-figure('Units', 'Centimeters', 'Position', [1, 3, 10, 14]);
+figure('NumberTitle','Off','Color','w','Units', 'Centimeters', 'Position', [1, 3, 10, 14]);
 posterior = BernBeta( Prior, Data);
-saveas(gcf, 'BernBetaExample.png');
+img = getframe(gcf); imwrite(img.cdata, fullfile('figures','BernBetaExample.png'));
