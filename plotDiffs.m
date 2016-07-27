@@ -29,15 +29,15 @@ for indVar = 1:nVar
             subplot(nVar, nVar, sub2ind([nVar, nVar], indVar, jindVar));
             mbe_plotPost(mcmcChain.(names{vars_to_plot(indVar)})-...
                 mcmcChain.(names{vars_to_plot(jindVar)}), 'compVal' ,0);
-            title({names{vars_to_plot(indVar)},...
-                [' - ',names{vars_to_plot(jindVar)}]});
+            title({['\',names{vars_to_plot(indVar)}],...
+                [' - \',names{vars_to_plot(jindVar)}]});
             box off;
             set(gca,'FontSize',6)
         elseif jindVar == indVar
             subplot(nVar,nVar,sub2ind([nVar,nVar],indVar,jindVar));
             ax = subplot(nVar, nVar, sub2ind([nVar, nVar], indVar, jindVar));
             set(ax,'Visible','off');
-            text(4,5,[names{vars_to_plot(indVar)}],...
+            text(4,5,['\',names{vars_to_plot(indVar)}],...
                 'FontWeight','bold','FontSize',14,'HorizontalAlignment','center');
             rectangle('Position',[0 0 10 10]);
 %         else
