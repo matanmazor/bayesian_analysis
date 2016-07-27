@@ -129,7 +129,7 @@ for i = 1:numel(params)
         fig_handle = figure('color','w','NumberTitle','Off','position', [0,0,700,600]);    
         mbe_plotPost(mcmcChain.(params{i}),'credMass',0.95,...
         'xlab',['\',params{i}]);
-        saveas(fig_handle,[params{i},'.png']);
+        saveas(fig_handle,fullfile(output_dir,[params{i},'.png']));
 end
 
 %plot differences between selected variables
