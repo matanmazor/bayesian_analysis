@@ -1,4 +1,4 @@
-function [ fig_handle ] = plotDiffs( mcmcChain, vars_to_plot )
+function [ fig_handle ] = plotDiffs( mcmcChain, vars_to_plot, param_names )
 %% plotDiffs
 %   Plot matrix of posterior differences
 % INPUT:
@@ -15,29 +15,31 @@ function [ fig_handle ] = plotDiffs( mcmcChain, vars_to_plot )
 % And on the matlab-bayesian-estimation-master package by Nils Winter,
 % retrieved from GitHub: https://github.com/NilsWinter/matlab-bayesian-estimation
 %-------------------------------------------------------------------------
-
 names = fieldnames(mcmcChain);
+if ~exist('param_names','var') 
+    param_names = names;
+end
 % Plot the parameters pairwise, to see correlations:
 fig_handle = figure('color','w','NumberTitle','Off','position', [0,0,700,600]);
 nVar = numel(vars_to_plot);
 
 for indVar = 1:nVar
     subplot(nVar,nVar, sub2ind([nVar, nVar], indVar, indVar));
-    title([names{vars_to_plot(indVar)}]);
+    title([param_names{vars_to_plot(indVar)}]);
     for jindVar = 1:nVar
         if jindVar < indVar
             subplot(nVar, nVar, sub2ind([nVar, nVar], indVar, jindVar));
             mbe_plotPost(mcmcChain.(names{vars_to_plot(indVar)})-...
                 mcmcChain.(names{vars_to_plot(jindVar)}), 'compVal' ,0);
-            title({['\',names{vars_to_plot(indVar)}],...
-                [' - \',names{vars_to_plot(jindVar)}]});
+            title({['\',param_names{vars_to_plot(indVar)}],...
+                [' - \',param_names{vars_to_plot(jindVar)}]});
             box off;
             set(gca,'FontSize',6)
         elseif jindVar == indVar
             subplot(nVar,nVar,sub2ind([nVar,nVar],indVar,jindVar));
             ax = subplot(nVar, nVar, sub2ind([nVar, nVar], indVar, jindVar));
             set(ax,'Visible','off');
-            text(4,5,['\',names{vars_to_plot(indVar)}],...
+            text(4,5,['\',param_names{vars_to_plot(indVar)}],...
                 'FontWeight','bold','FontSize',14,'HorizontalAlignment','center');
             rectangle('Position',[0 0 10 10]);
 %         else
